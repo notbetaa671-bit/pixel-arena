@@ -57,7 +57,7 @@ La base de datos se crea automáticamente al iniciar. El identificador de perfil
 
 Puedes desplegar `server/` en Render, Railway, Fly.io, una VPS u otro proveedor Node.js.
 
-En Render también puedes usar el Blueprint incluido en `render.yaml`: selecciona **New → Blueprint**, conecta este repositorio y Render creará el servidor y el cliente con sus directorios correctos automáticamente. Después del primer despliegue, copia la URL pública del servidor en `client/config.js` y vuelve a hacer push.
+En Render, crea manualmente un **Web Service** con `server/` como root directory. Para esta beta también puedes usar Railway, que permite conectar el repositorio desde su panel y configurar `server/` como root directory.
 
 Configuración genérica:
 
