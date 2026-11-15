@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070a14" />
+    <meta name="description" content="PIXEL ARENA — arena multijugador pixel cyberpunk" />
+    <title>PIXEL ARENA — beta 0.1</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app-shell">
+      <section id="game-root" aria-label="Arena de juego"></section>
+
+      <section id="connection-panel" class="screen-panel">
+        <div class="brand-lockup">
+          <div class="brand-mark">PA</div>
+          <div>
+            <p class="eyebrow">BETA 0.1 // ONLINE</p>
+            <h1>PIXEL ARENA</h1>
+          </div>
+        </div>
+        <p class="tagline">Entra, apunta y sobrevive. Cada sala admite hasta 20 jugadores.</p>
+        <p id="connection-status" class="status-line">Conectando con el servidor…</p>
+
+        <form id="join-form" class="join-form">
+          <label for="username">Nombre de jugador</label>
+          <input id="username" name="username" maxlength="16" autocomplete="nickname" placeholder="Ej. NEXUS" required />
+
+          <label for="room-select">Servidor / sala</label>
+          <select id="room-select" name="roomId">
+            <option value="alpha">ALPHA // Neon District</option>
+            <option value="bravo">BRAVO // Rust Sector</option>
+          </select>
+
+          <button id="join-button" class="primary-button" type="submit" disabled>ENTRAR A LA ARENA</button>
+        </form>
+
+        <div class="control-hint">
+          <span><kbd>WASD</kbd> mover</span>
+          <span><kbd>MOUSE</kbd> apuntar</span>
+          <span><kbd>CLICK</kbd> disparar</span>
+        </div>
+        <p class="small-note">No se requiere cuenta en esta beta. Las estadísticas se guardan por nombre.</p>
+      </section>
+
+      <section id="hud" class="hud hidden" aria-live="polite">
+        <div class="hud-topbar">
+          <div class="hud-pill"><span class="pill-label">HP</span><strong id="hp-value">100</strong></div>
+          <div class="hp-track"><span id="hp-bar"></span></div>
+          <div class="hud-pill coin-pill"><span class="coin-glyph">◆</span><strong id="coin-value">0</strong></div>
+          <div class="hud-pill"><span class="pill-label">KILLS</span><strong id="kill-value">0</strong></div>
+          <div class="hud-room"><span id="room-label">ALPHA</span><span id="player-count">0/20</span></div>
+          <button id="shop-button" class="hud-button" type="button">TIENDA</button>
+          <button id="leave-button" class="hud-button danger" type="button">SALIR</button>
+        </div>
+
+        <aside id="leaderboard" class="panel-card leaderboard-card">
+          <div class="panel-title"><span>RANKING DE SALA</span><span class="live-dot">● LIVE</span></div>
+          <ol id="leaderboard-list"></ol>
+        </aside>
+
+        <aside id="chat-panel" class="panel-card chat-card">
+          <div class="panel-title"><span>CHAT</span><span class="chat-room-label">LOCAL</span></div>
+          <div id="chat-messages" class="chat-messages"></div>
+          <form id="chat-form" class="chat-form">
+            <input id="chat-input" maxlength="160" placeholder="Escribe un mensaje…" autocomplete="off" />
+            <button type="submit" aria-label="Enviar mensaje">↵</button>
+          </form>
+        </aside>
+
+        <div id="respawn-banner" class="respawn-banner hidden"></div>
+      </section>
+
+      <section id="shop-modal" class="modal-backdrop hidden" aria-modal="true" role="dialog" aria-labelledby="shop-title">
+        <div class="shop-modal panel-card">
+          <div class="panel-title"><span id="shop-title">TIENDA // DESBLOQUEABLES</span><button id="close-shop" class="close-button" type="button">×</button></div>
+          <p class="shop-balance">Tus monedas: <strong id="shop-balance">0</strong></p>
+          <div id="shop-items" class="shop-items"></div>
+        </div>
+      </section>
+
+      <div id="toast" class="toast" role="status"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="config.js"></script>
+    <script src="src/main.js"></script>
+  </body>
+</html>
+
