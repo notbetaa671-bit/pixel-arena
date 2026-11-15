@@ -71,9 +71,8 @@ El endpoint `GET /health` responde con el estado del servidor. El endpoint `GET 
 ## Despliegue del cliente en GitHub Pages
 
 1. Edita `client/config.js` y cambia `serverUrl` por la URL HTTPS pública de tu servidor.
-2. En GitHub, abre **Settings → Pages**.
-3. Selecciona **Deploy from a branch**, elige `main` y la carpeta `/client` si tu configuración de Pages lo permite.
-4. Si tu configuración solo permite la raíz, copia el contenido de `client/` a una rama o workflow de publicación.
+2. En GitHub, abre **Settings → Pages** y selecciona **GitHub Actions** como fuente.
+3. Haz push a `main`. El workflow `.github/workflows/deploy-pages.yml` publica automáticamente la carpeta `client/`.
 
 El cliente carga Phaser y Socket.IO desde CDN. Por eso no necesita un build de frontend. GitHub Pages debe usar HTTPS y el servidor también debe exponerse por HTTPS para evitar contenido mixto.
 
